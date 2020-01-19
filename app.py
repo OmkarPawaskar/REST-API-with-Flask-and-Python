@@ -15,7 +15,9 @@ api = Api(app)
 
 jwt = JWT(app,authenticate,identity) # /auth
 
-
+@app.before_first_request
+def create_table():
+    db.create_all()
 
 #api.add_resource(Student , '/student/<string:name>') #http://127.0.0.1:5000/student/Rolf
 api.add_resource(Stores,'/store/<string:name>')
